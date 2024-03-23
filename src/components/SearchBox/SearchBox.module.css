@@ -1,0 +1,23 @@
+.SearchBox {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.SearchBoxLabel {
+    color: black;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.SearchBoxInput {
+    color: black;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 4px;
+    font-size: 10px;
+    padding: 4px 8px;
+    background-color: transparent;
+    padding: 4px 8px;
+}

@@ -1,0 +1,60 @@
+.ContactForm {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    border-radius: 4px;
+    border-color: black;
+    padding: 10px;
+}
+
+.ContactFormItem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ContactFormItem:not(:first-child) {
+    margin-top: 10px;
+}
+
+.ContactFormLabel {
+    color: black;
+    font-size: 13px;
+}
+
+.ContactFormInput {
+    color: black;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 4px 8px;
+    background-color: transparent;
+}
+
+.ErrorMessage {
+    font-size: 6;
+    color: brown;
+    text-decoration: underline;
+}
+
+.AddContactBtn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+    background-color: blue;
+    border-color: transparent;
+    width: 100px;
+    height: 30px;
+    margin: 10px auto 0;
+    outline: none;
+}
+
+.AddContactBtn:hover,
+.AddContactBtn:focus {
+    background-color: rgb(71, 99, 239);
+    border-color: transparent;
+    outline: none;
+}

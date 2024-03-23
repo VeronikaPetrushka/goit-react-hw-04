@@ -1,0 +1,66 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.ContactContainer {
+    border: 1px solid;
+    border-radius: 4px;
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 45px;
+    margin-top: 10px;
+}
+
+.UserContact {
+    display: flex;
+    flex-direction: column;
+}
+
+.ContactBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ContactBox:not(:first-child) {
+    margin-top: 5px;
+}
+
+.UserItem {
+    color: black;
+    font-size: 13px;
+    margin-left: 8px;
+}
+
+.UserIcon {
+    color: black;
+}
+
+.PhoneIcon {
+    color: black;
+}
+
+.ContactDeleteBtn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+    background-color: red;
+    outline: none;
+    width: 55px;
+    height: 20px;
+    border-color: transparent;
+}
+
+.ContactDeleteBtn:hover,
+.ContactDeleteBtn:focus {
+    background-color: rgb(233, 103, 103);
+    border-color: transparent;
+    outline: none;
+}
