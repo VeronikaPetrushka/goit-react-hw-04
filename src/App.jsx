@@ -1,56 +1,43 @@
 import './App.css';
-import ContactForm from './components/ContactFrom/ContactForm';
-import SearchBox from './components/SearchBox/SearchBox';
-import ContactList from './components/ContactList/ContactList';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+// import { useMemo } from "react";
+import { fetchArticlesWithTopic } from "../articles-api.js";
+import ImageGallery from './components/ImageGallery/ImageGallery.jsx';
+import SearchForm from './components/SearchBar/SearchBar.jsx';
 
-const initialContacts = [
-  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
+// Access KEY ws2fGeHWZ0yz62KUutYPYWk-1LZA4NnyUNmtmak3VgI
 
 const App = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [contacts, setContacts] = useState(() => {
-    const storedContacts = localStorage.getItem('contacts');
-    return storedContacts ? JSON.parse(storedContacts) : initialContacts;
-  });
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  const handleChange = (value) => {
-    setInputValue(value);
-  };
-
-  const getFilteredContacts = () => {
-    return contacts.filter((contact) =>
-    
-    contact.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  };
-
-  const handleAddContact = (contact) => {
-    const updatedContacts = [...contacts, { ...contact, id: `id-${Date.now()}` }];
-    setContacts(updatedContacts);
-  };
-
-  const handleDeleteContact = (id) => {
-    const updatedContacts = contacts.filter((contact) => contact.id !== id);
-    setContacts(updatedContacts);
+	const handleSearch = async (topic) => {
+    try {
+      setImages([]);
+      setError(false);
+      setLoading(true);
+      const data = await fetchArticlesWithTopic(topic);
+      setImages(data);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div>
-      <h1 className="PhoneBookTitle">Phonebook</h1>
-      <ContactForm onAddContact={handleAddContact} />
-      <SearchBox inputValue={inputValue} handleChange={handleChange} />
-      <ContactList contacts={getFilteredContacts()} onDeleteContact={handleDeleteContact} />
+      <SearchForm onSearch={handleSearch} />
+      {loading && <p style={{ fontSize: 20 }}>Loading data, please wait...</p>}
+      {error && (
+        <p>Whoops, something went wrong! Please try reloading this page!</p>
+      )}
+      {images.length > 0 && <ImageGallery items={images} />}
     </div>
   );
 };
+
+
 
 export default App;
