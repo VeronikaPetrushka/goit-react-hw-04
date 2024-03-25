@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { useMemo } from "react";
 import fetchPhotosWithTopic from "./api.js";
 import ImageGallery from './components/ImageGallery/ImageGallery.jsx';
@@ -9,8 +9,15 @@ import SearchForm from './components/SearchBar/SearchBar.jsx';
 
 const App = () => {
   const [images, setImages] = useState([]);
+  const [searchWord, setSearchWord] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (searchWord !== "") {
+      handleSearch(searchWord);
+    }
+  }, [searchWord]);
 
 	const handleSearch = async (topic) => {
     try {
@@ -32,9 +39,13 @@ const App = () => {
     }
   };
 
+  const onSearch = (word) => {
+    setSearchWord(word);
+  }
+
   return (
     <div>
-      <SearchForm onSearch={handleSearch} />
+      <SearchForm onSearch={onSearch} />
       {loading && <p style={{ fontSize: 20 }}>Loading data, please wait...</p>}
       {error && (
         <p>Whoops, something went wrong! Please try reloading this page!</p>
