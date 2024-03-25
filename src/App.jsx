@@ -19,6 +19,22 @@ const App = () => {
     }
   }, [searchWord]);
 
+  useEffect(() => {
+    async function fetchImages() {
+      try {
+        setLoading(true);
+				const data = await fetchPhotosWithTopic("react");
+        setImages(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchImages();
+  }, []);
+
 	const handleSearch = async (topic) => {
     try {
       setImages([]);
