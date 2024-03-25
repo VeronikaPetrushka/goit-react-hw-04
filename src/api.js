@@ -1,7 +1,7 @@
 // src/articles-api.js
 import axios from "axios";
 
-axios.defaults.baseURL = "<https://api.unsplash.com>";
+axios.defaults.baseURL = "https://api.unsplash.com";
 
 const fetchPhotosWithTopic = async (topic) => {
   const response = axios.get(`/search/photos?query=${topic}`);

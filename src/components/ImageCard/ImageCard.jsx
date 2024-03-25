@@ -1,7 +1,7 @@
 const ImageCard = ({item}) => {
     return (
         <div>
-            <img src={item.regularImage} alt={item.altDescription} />
+            <img src={item.smallImg} alt={item.altDesc} />
         </div>
     )
 };

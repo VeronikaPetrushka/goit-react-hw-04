@@ -18,13 +18,13 @@ const App = () => {
       setError(false);
       setLoading(true);
       const data = await fetchPhotosWithTopic(topic);
-      const imageResults = data.map((item) => ({
+      const imgResults = data.map((item) => ({
         id: item.id,
-        smallImage: item.urls.small,
-        regularImage: item.urls.regular,
-        altDescription: item.alt_description,
+        smallImg:item.urls.small,
+        regularImg: item.urls.regular,
+        altDesc: item.alt_description,
       }));
-      setImages(imageResults);
+      setImages(imgResults);
     } catch (error) {
       setError(true);
     } finally {
