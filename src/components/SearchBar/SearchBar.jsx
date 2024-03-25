@@ -28,6 +28,7 @@ const SearchForm = ({ onSearch }) => {
 				autoComplete="off"
 				autoFocus
 				placeholder="Search images and photos"
+				name="image"
 			/>
 			<button type="submit">Search</button>
 		</form>

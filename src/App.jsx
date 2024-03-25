@@ -1,7 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 // import { useMemo } from "react";
-import { fetchArticlesWithTopic } from "../articles-api.js";
+import fetchPhotosWithTopic from "./api.js";
 import ImageGallery from './components/ImageGallery/ImageGallery.jsx';
 import SearchForm from './components/SearchBar/SearchBar.jsx';
 
@@ -17,7 +17,7 @@ const App = () => {
       setImages([]);
       setError(false);
       setLoading(true);
-      const data = await fetchArticlesWithTopic(topic);
+      const data = await fetchPhotosWithTopic(topic);
       setImages(data);
     } catch (error) {
       setError(true);
