@@ -5,7 +5,12 @@ const ImageGallery = ({items}) => {
         <ul>
             {items.map((item) => (
                 <li key={item.id}>
-                    <ImageCard item={item} />
+                    <ImageCard
+                        item={item}
+                        smallImg={item.urls.small}
+                        regularImg={item.urls.regular}
+                        altDesc={item.alt_description}
+                    />
                 </li>
       ))}
         </ul>
