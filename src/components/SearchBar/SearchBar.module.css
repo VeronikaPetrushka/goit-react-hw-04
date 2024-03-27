@@ -33,10 +33,16 @@
     background-color: transparent;
     border: none;
     color: black;
+    outline: none;
     padding: 10px;
     z-index: 1000;
     position: absolute;
     right: 24px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.searchBtn:focus {
+    border-color: transparent;
+    outline: none;
 }
