@@ -64,7 +64,6 @@ const App = () => {
           <Loader />
         </div>
       )}
-        {/* <p style={{ fontSize: 20 }}>Loading data, please wait...</p> */}
       {error && (
         <ErrorMessage />
       )}
@@ -73,7 +72,7 @@ const App = () => {
         <LoadMoreBtn onClick={handleLoadMore} hasMorePhotos={true} loading={loading} />
       )}
       {images.length === 0 && (
-        <p>Sorry, there are no more photos to show.</p>
+        <p style={{color: 'black', fontSize: 20}}>Sorry, there are no photos to show.</p>
       )}
       <ImageModal
         isOpen={isModalOpen}

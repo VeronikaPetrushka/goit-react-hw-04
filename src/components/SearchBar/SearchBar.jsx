@@ -26,17 +26,19 @@ const SearchForm = ({ onSearch }) => {
     <header className={css.header}>
 		<form className={css.searchForm} onSubmit={handleSubmit}>
 			<div className={css.searchContainer}>
-				<button className={css.searchBtn} type="submit">
-				<IoSearch size='20'/>
-				</button>
-				<input
-				className={css.searchInput}
-				type="text"
-				autoComplete="off"
-				autoFocus
-				placeholder="Search images and photos"
-				name="image"
-			/>
+				<div className={css.searchIconPosition}>
+					<button className={css.searchBtn} type="submit">
+					<IoSearch size='20'/>
+					</button>
+					<input
+						className={css.searchInput}
+						type="text"
+						autoComplete="off"
+						autoFocus
+						placeholder="Search images and photos"
+						name="image"
+					/>
+				</div>
 			</div>
 		</form>
 	</header>
