@@ -1,4 +1,6 @@
 import toast from 'react-hot-toast';
+import css from './SearchBar.module.css';
+import { IoSearch } from "react-icons/io5";
 
 const SearchForm = ({ onSearch }) => {
 
@@ -21,16 +23,21 @@ const SearchForm = ({ onSearch }) => {
  };
 
   return (
-    <header>
-		<form onSubmit={handleSubmit}>
-			<input
+    <header className={css.header}>
+		<form className={css.searchForm} onSubmit={handleSubmit}>
+			<div className={css.searchContainer}>
+				<button className={css.searchBtn} type="submit">
+				<IoSearch size='20'/>
+				</button>
+				<input
+				className={css.searchInput}
 				type="text"
 				autoComplete="off"
 				autoFocus
 				placeholder="Search images and photos"
 				name="image"
 			/>
-			<button type="submit">Search</button>
+			</div>
 		</form>
 	</header>
   );
