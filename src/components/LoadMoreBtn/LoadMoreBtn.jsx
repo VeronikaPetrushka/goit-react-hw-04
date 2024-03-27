@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Loader from '../Loader/Loader';
+import css from './LoadMoreBtn.module.css'
 
 const LoadMoreBtn = ({ onClick, hasMorePhotos, loading }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +18,7 @@ const LoadMoreBtn = ({ onClick, hasMorePhotos, loading }) => {
           <Loader />
         </div>
       ) : (
-        <button onClick={handleClick} style={{ marginTop: '20px' }} disabled={!hasMorePhotos || isLoading || loading}>
+        <button className={css.LoadMoreBtn} onClick={handleClick} style={{ marginTop: '20px' }} disabled={!hasMorePhotos || isLoading || loading}>
           Load more
         </button>
       )}
