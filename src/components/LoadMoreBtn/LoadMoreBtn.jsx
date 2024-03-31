@@ -18,9 +18,11 @@ const LoadMoreBtn = ({ onClick, hasMorePhotos, loading }) => {
           <Loader />
         </div>
       ) : (
-        <button className={css.LoadMoreBtn} onClick={handleClick} style={{ marginTop: '20px' }} disabled={!hasMorePhotos || isLoading || loading}>
-          Load more
-        </button>
+          hasMorePhotos && (
+            <button className={css.LoadMoreBtn} onClick={handleClick} style={{ marginTop: '20px' }} disabled={!hasMorePhotos || isLoading || loading}>
+              Load more
+            </button>
+          )
       )}
     </div>
   );
