@@ -13,9 +13,9 @@ const App = () => {
   const [searchWord, setSearchWord] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
   const openModal = (imageUrl) => {
