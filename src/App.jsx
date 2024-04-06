@@ -1,4 +1,3 @@
-import './App.css';
 import { useEffect, useState } from 'react';
 import fetchPhotosWithTopic from "./api.js";
 import ImageGallery from './components/ImageGallery/ImageGallery.jsx';
@@ -17,6 +16,7 @@ const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const openModal = (imageUrl) => {
     setSelectedImage(imageUrl);
@@ -52,8 +52,10 @@ const App = () => {
     setPage(1);
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = async () => {
+    setIsLoadingMore(true);
     setPage((prevPage) => prevPage + 1);
+    setIsLoadingMore(false);
   };
 
   return (
@@ -69,7 +71,7 @@ const App = () => {
       )}
       {images.length > 0 && <ImageGallery items={images} openModal={openModal} />}
       {images.length > 0 && (
-        <LoadMoreBtn onClick={handleLoadMore} hasMorePhotos={page < totalPages} loading={loading} items={images} />
+        <LoadMoreBtn onClick={handleLoadMore} hasMorePhotos={page < totalPages} isLoading={isLoadingMore} />
       )}
       {images.length === 0 && (
         <p style={{ color: 'black', fontSize: 20 }}>Sorry, there are no photos to show.</p>
