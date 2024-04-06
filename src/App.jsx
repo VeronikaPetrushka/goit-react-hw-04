@@ -33,7 +33,7 @@ const App = () => {
       try {
         setLoading(true);
         const data = await fetchPhotosWithTopic(searchWord, page);
-        setImages((prevImages) => [...prevImages, ...data]);
+        setImages((prevImages) => [...prevImages, ...data.results]);
         setTotalPages(data.total_pages);
         setIsLoadingMore(true);
       } catch (error) {

@@ -6,7 +6,7 @@ const fetchPhotosWithTopic = async (topic, page) => {
   const response = await axios.get(
     `/search/photos?query=${topic}&per_page=20&page=${page}`
   );
-  return response.data.results;
+  return response.data;
 };
 
 const accessKey = "ws2fGeHWZ0yz62KUutYPYWk-1LZA4NnyUNmtmak3VgI";
