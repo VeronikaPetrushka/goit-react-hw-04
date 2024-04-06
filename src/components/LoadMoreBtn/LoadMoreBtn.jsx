@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Loader from '../Loader/Loader';
-import css from './LoadMoreBtn.module.css'
+import css from './LoadMoreBtn.module.css';
 
-const LoadMoreBtn = ({ onClick, hasMorePhotos, loading }) => {
+const LoadMoreBtn = ({ onClick, hasMorePhotos, loading, items }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
@@ -18,11 +18,11 @@ const LoadMoreBtn = ({ onClick, hasMorePhotos, loading }) => {
           <Loader />
         </div>
       ) : (
-          hasMorePhotos && (
-            <button className={css.LoadMoreBtn} onClick={handleClick} style={{ marginTop: '20px' }} disabled={!hasMorePhotos || isLoading || loading}>
-              Load more
-            </button>
-          )
+        items.length > 0 && hasMorePhotos && (
+          <button className={css.LoadMoreBtn} onClick={handleClick} style={{ marginTop: '20px' }} disabled={!hasMorePhotos || isLoading || loading}>
+            Load more
+          </button>
+        )
       )}
     </div>
   );

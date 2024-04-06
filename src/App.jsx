@@ -1,6 +1,5 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-// import { useMemo } from "react";
 import fetchPhotosWithTopic from "./api.js";
 import ImageGallery from './components/ImageGallery/ImageGallery.jsx';
 import SearchForm from './components/SearchBar/SearchBar.jsx';
@@ -17,6 +16,7 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [totalPages, setTotalPages] = useState(0);
 
   const openModal = (imageUrl) => {
     setSelectedImage(imageUrl);
@@ -28,13 +28,13 @@ const App = () => {
     setIsModalOpen(false);
   };
 
-
   useEffect(() => {
     async function fetchImages() {
       try {
         setLoading(true);
-				const data = await fetchPhotosWithTopic(searchWord, page);
+        const data = await fetchPhotosWithTopic(searchWord, page);
         setImages((prevImages) => [...prevImages, ...data]);
+        setTotalPages(data.total_pages);
       } catch (error) {
         setError(true);
       } finally {
@@ -45,7 +45,7 @@ const App = () => {
     fetchImages();
   }, [searchWord, page]);
 
-	const handleSearch = async (word) => {
+  const handleSearch = async (word) => {
     setImages([]);
     setError(false);
     setSearchWord(word);
@@ -69,10 +69,10 @@ const App = () => {
       )}
       {images.length > 0 && <ImageGallery items={images} openModal={openModal} />}
       {images.length > 0 && (
-        <LoadMoreBtn onClick={handleLoadMore} hasMorePhotos={true} loading={loading} />
+        <LoadMoreBtn onClick={handleLoadMore} hasMorePhotos={page < totalPages} loading={loading} items={images} />
       )}
       {images.length === 0 && (
-        <p style={{color: 'black', fontSize: 20}}>Sorry, there are no photos to show.</p>
+        <p style={{ color: 'black', fontSize: 20 }}>Sorry, there are no photos to show.</p>
       )}
       <ImageModal
         isOpen={isModalOpen}
@@ -82,7 +82,5 @@ const App = () => {
     </div>
   );
 };
-
-
 
 export default App;
