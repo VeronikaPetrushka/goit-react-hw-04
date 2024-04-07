@@ -72,9 +72,9 @@ const App = () => {
         <ErrorMessage />
       )}
       {images.length > 0 && <ImageGallery items={images} openModal={openModal} />}
-      {images.length > 0 && (
-        <LoadMoreBtn onClick={handleLoadMore} hasMorePhotos={hasMorePhotos} disabled={!hasMorePhotos || isLoadingMore} />
-      )}
+      {images.length > 0 &&hasMorePhotos && !isLoadingMore &&
+        <LoadMoreBtn onClick={handleLoadMore} hasMorePhotos={hasMorePhotos}  />
+      }
       {images.length === 0 && (
         <p style={{ color: 'black', fontSize: 20 }}>Sorry, there are no photos to show.</p>
       )}
