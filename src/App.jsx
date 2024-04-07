@@ -17,6 +17,7 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const hasMorePhotos = page < totalPages;
 
   const openModal = (imageUrl) => {
     setSelectedImage(imageUrl);
@@ -72,7 +73,7 @@ const App = () => {
       )}
       {images.length > 0 && <ImageGallery items={images} openModal={openModal} />}
       {images.length > 0 && (
-        <LoadMoreBtn onClick={handleLoadMore} hasMorePhotos={page < totalPages} isLoading={isLoadingMore} />
+        <LoadMoreBtn onClick={handleLoadMore} hasMorePhotos={hasMorePhotos} disabled={!hasMorePhotos || isLoadingMore} />
       )}
       {images.length === 0 && (
         <p style={{ color: 'black', fontSize: 20 }}>Sorry, there are no photos to show.</p>
